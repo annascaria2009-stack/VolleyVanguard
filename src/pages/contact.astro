@@ -1,0 +1,158 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import site from '../data/site.json';
+
+const waNumber = site.whatsapp.replace(/[^\d]/g, '');
+---
+<BaseLayout title="Contact" description="Get in touch with VolleyVanguard.">
+  <section class="section">
+    <div class="wrap">
+      <SectionLabel text="Get in Touch" />
+      <h1 class="title">Contact Us</h1>
+      <p class="intro">
+        Tell us a bit about you and we'll get back to you soon. You can also reach us
+        directly via the channels on the right.
+      </p>
+
+      <div class="grid">
+        <form
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="form"
+        >
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="hp"><label>Don't fill this out: <input name="bot-field" /></label></p>
+
+          <label class="field">
+            <span>Your name</span>
+            <input type="text" name="name" required />
+          </label>
+          <label class="field">
+            <span>Email</span>
+            <input type="email" name="email" required />
+          </label>
+          <label class="field">
+            <span>Phone (optional)</span>
+            <input type="tel" name="phone" />
+          </label>
+          <label class="field">
+            <span>Message</span>
+            <textarea name="message" rows="6" required></textarea>
+          </label>
+
+          <button type="submit" class="btn">Send message →</button>
+        </form>
+
+        <aside class="channels">
+          <h2 class="ch-title">Other ways to reach us</h2>
+          <ul class="ch-list">
+            <li>
+              <span class="ch-label">Email</span>
+              <a href={`mailto:${site.email}`}>{site.email}</a>
+            </li>
+            <li>
+              <span class="ch-label">WhatsApp</span>
+              <a href={`https://wa.me/${waNumber}`} target="_blank" rel="noopener noreferrer">
+                Chat with us
+              </a>
+            </li>
+            <li>
+              <span class="ch-label">Instagram</span>
+              <a href={site.instagram} target="_blank" rel="noopener noreferrer">@volleyvanguard</a>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .title {
+    font-size:42px;
+    color:var(--navy);
+    margin-bottom:12px;
+  }
+  .intro {
+    color:var(--muted);
+    max-width:640px;
+    margin-bottom:32px;
+    font-size:17px;
+    line-height:1.6;
+  }
+  .grid {
+    display:grid;
+    grid-template-columns:minmax(0, 2fr) minmax(260px, 1fr);
+    gap:40px;
+    align-items:start;
+  }
+  .form {
+    display:grid;
+    gap:16px;
+    background:#fff;
+    padding:28px;
+    border-radius:var(--radius);
+    box-shadow:0 8px 24px rgba(11,31,58,0.07);
+  }
+  .field { display:grid; gap:6px; }
+  .field span {
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:0.5px;
+    color:var(--navy);
+    text-transform:uppercase;
+  }
+  .field input,
+  .field textarea {
+    font:inherit;
+    font-size:15px;
+    color:var(--ink);
+    padding:12px 14px;
+    border:1px solid #d9e0ec;
+    border-radius:8px;
+    background:#fff;
+    transition:border-color .15s ease, box-shadow .15s ease;
+  }
+  .field input:focus,
+  .field textarea:focus {
+    outline:none;
+    border-color:var(--coral);
+    box-shadow:0 0 0 3px rgba(255,90,60,0.18);
+  }
+  .form .btn { justify-self:flex-start; margin-top:8px; }
+  .hp { display:none; }
+
+  .channels {
+    background:var(--navy);
+    color:#fff;
+    border-radius:var(--radius);
+    padding:28px;
+  }
+  .ch-title {
+    font-size:18px;
+    margin-bottom:18px;
+    color:#fff;
+  }
+  .ch-list { list-style:none; padding:0; display:grid; gap:18px; }
+  .ch-list li { display:grid; gap:4px; }
+  .ch-label {
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+    color:var(--coral);
+  }
+  .ch-list a {
+    color:#fff;
+    font-weight:600;
+    word-break:break-word;
+  }
+  .ch-list a:hover { text-decoration:underline; }
+
+  @media (max-width: 760px) {
+    .grid { grid-template-columns:1fr; gap:24px; }
+  }
+</style>
