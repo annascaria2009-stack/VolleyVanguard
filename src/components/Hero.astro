@@ -1,0 +1,76 @@
+---
+interface Props {
+  heading: string;
+  subtext: string;
+  image: string;
+}
+
+const { heading, subtext, image } = Astro.props;
+---
+
+<section class="hero">
+  <div class="bg" style={`background-image:url(${image})`}></div>
+  <div class="overlay"></div>
+  <div class="wrap">
+    <h1>{heading}</h1>
+    <p>{subtext}</p>
+    <a href="/contact" class="btn" style="margin-top:28px">Get in touch →</a>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 560px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    overflow: hidden;
+  }
+
+  .bg {
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(11,31,58,0.86), rgba(19,49,92,0.72));
+    z-index: 1;
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 2;
+    padding: 80px 20px;
+  }
+
+  h1 {
+    font-size: clamp(34px, 6vw, 64px);
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    line-height: 1.02;
+  }
+
+  p {
+    max-width: 520px;
+    margin-top: 18px;
+    font-size: 18px;
+    opacity: 0.9;
+    line-height: 1.55;
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      min-height: 460px;
+    }
+
+    .wrap {
+      padding: 60px 20px;
+    }
+  }
+</style>

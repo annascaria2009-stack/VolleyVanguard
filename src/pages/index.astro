@@ -1,11 +1,137 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import Hero from '../components/Hero.astro';
+import CoachCard from '../components/CoachCard.astro';
+import GalleryGrid from '../components/GalleryGrid.astro';
+import { getCollection, render } from 'astro:content';
+import home from '../data/home.json';
+
+const coaches = (await getCollection('coaches'))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 4);
+const renderedCoaches = await Promise.all(
+  coaches.map(async (entry) => {
+    const { Content } = await render(entry);
+    return { entry, Content };
+  })
+);
+
+const galleryItems = (await getCollection('gallery'))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 4)
+  .map((e) => ({ image: e.data.image, caption: e.data.caption }));
 ---
-<BaseLayout title="Home">
+<BaseLayout title="Home" description="Elite volleyball coaching by the VolleyVanguard team.">
+  <Hero heading={home.heroHeading} subtext={home.heroSubtext} image={home.heroImage} />
+
+  <section class="section">
+    <div class="wrap" style="text-align:center">
+      <SectionLabel text="Who We Are" />
+      <p class="intro">{home.intro}</p>
+      <div class="stats">
+        {home.stats.map((s) => (
+          <div class="stat">
+            <div class="stat-value">{s.value}</div>
+            <div class="stat-label">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="wrap">
+      <SectionLabel text="Meet the Coaches" />
+      <h2 class="section-title">A team that lifts each other</h2>
+      <div class="coach-grid">
+        {renderedCoaches.map(({ entry, Content }) => (
+          <CoachCard name={entry.data.name} role={entry.data.role} photo={entry.data.photo}>
+            <Content />
+          </CoachCard>
+        ))}
+      </div>
+      <div class="more-link"><a href="/coaches" class="link">See all coaches →</a></div>
+    </div>
+  </section>
+
   <section class="section">
     <div class="wrap">
-      <h1>VolleyVanguard</h1>
-      <p>Home page coming soon.</p>
+      <SectionLabel text="From the Court" />
+      <h2 class="section-title">Recent moments</h2>
+      <GalleryGrid items={galleryItems} />
+      <div class="more-link"><a href="/gallery" class="link">View full gallery →</a></div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="wrap" style="text-align:center;color:#fff">
+      <h2 style="font-size:30px;margin-bottom:10px">Ready to join the Vanguard?</h2>
+      <p style="opacity:0.85;max-width:520px;margin:0 auto 22px">
+        Check our weekly training schedule and reach out to register.
+      </p>
+      <a href="/schedule" class="btn">View schedule →</a>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .intro {
+    color:var(--muted);
+    max-width:620px;
+    margin:8px auto 30px;
+    font-size:18px;
+    line-height:1.6;
+  }
+  .stats {
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:16px;
+    max-width:760px;
+    margin:0 auto;
+  }
+  .stat {
+    background:var(--surface);
+    border-radius:var(--radius);
+    padding:24px 16px;
+  }
+  .stat-value {
+    font-family:'Archivo Black', Inter, sans-serif;
+    font-size:36px;
+    color:var(--coral);
+    line-height:1;
+  }
+  .stat-label {
+    color:var(--muted);
+    font-size:13px;
+    margin-top:6px;
+    letter-spacing:0.5px;
+  }
+  .section-alt { background:var(--surface); }
+  .section-title {
+    font-size:32px;
+    color:var(--navy);
+    margin-bottom:24px;
+  }
+  .coach-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));
+    gap:24px;
+  }
+  .more-link {
+    margin-top:24px;
+    text-align:right;
+  }
+  .more-link .link {
+    font-weight:700;
+  }
+  .cta-band {
+    background:var(--navy);
+    padding:60px 0;
+  }
+  @media (max-width:560px) {
+    .stats { grid-template-columns:repeat(3, 1fr); gap:8px; }
+    .stat { padding:16px 8px; }
+    .stat-value { font-size:28px; }
+  }
+</style>

@@ -1,0 +1,11 @@
+{
+  "heroHeading": "TRAIN HARD. RISE TOGETHER.",
+  "heroSubtext": "Elite volleyball coaching led by a team of dedicated coaches.",
+  "heroImage": "https://picsum.photos/seed/volleyhero/1600/900",
+  "intro": "VolleyVanguard was founded by a group of friends united by a love of the game. We coach players of every level with discipline, heart, and team spirit.",
+  "stats": [
+    { "value": "6", "label": "Expert Coaches" },
+    { "value": "All", "label": "Skill Levels" },
+    { "value": "100%", "label": "Team Spirit" }
+  ]
+}
