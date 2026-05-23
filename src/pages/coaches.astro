@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import CoachCard from '../components/CoachCard.astro';
+import { getCollection, render } from 'astro:content';
+
+const coaches = (await getCollection('coaches')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+const rendered = await Promise.all(
+  coaches.map(async (entry) => {
+    const { Content } = await render(entry);
+    return { entry, Content };
+  })
+);
+---
+<BaseLayout title="Coaches" description="Meet the VolleyVanguard coaches.">
+  <section class="section">
+    <div class="wrap">
+      <SectionLabel text="Our Team" />
+      <h1 style="font-size:42px;color:var(--navy);margin-bottom:12px">Meet the Coaches</h1>
+      <p style="color:var(--muted);max-width:640px;margin-bottom:36px">
+        VolleyVanguard is led by a team of dedicated coaches who bring years of
+        playing and coaching experience to every session.
+      </p>
+      <div class="coach-grid">
+        {rendered.map(({ entry, Content }) => (
+          <CoachCard name={entry.data.name} role={entry.data.role} photo={entry.data.photo}>
+            <Content />
+          </CoachCard>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+<style>
+  .coach-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+</style>
