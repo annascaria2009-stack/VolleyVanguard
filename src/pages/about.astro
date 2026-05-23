@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import about from '../data/about.json';
+
+const paragraphs = about.body.split(/\n\n+/);
+---
+<BaseLayout title="About" description="The story behind VolleyVanguard.">
+  <section class="section">
+    <div class="wrap">
+      <SectionLabel text="Who We Are" />
+      <h1 class="title">{about.heading}</h1>
+      <img class="hero-image" src={about.image} alt={about.heading} loading="lazy" decoding="async" />
+      <div class="prose">
+        {paragraphs.map((p) => <p>{p}</p>)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+<style>
+  .title {
+    font-size:42px;
+    color:var(--navy);
+    margin-bottom:18px;
+  }
+  .hero-image {
+    width:100%;
+    aspect-ratio:16/9;
+    object-fit:cover;
+    border-radius:var(--radius);
+    margin-bottom:32px;
+  }
+  .prose {
+    max-width:720px;
+    color:var(--ink);
+    font-size:17px;
+    line-height:1.75;
+  }
+  .prose p + p { margin-top:18px; }
+</style>
