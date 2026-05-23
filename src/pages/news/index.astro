@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+import { getCollection, render } from 'astro:content';
+
+const entries = (await getCollection('news')).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+const rendered = await Promise.all(
+  entries.map(async (entry) => {
+    const { Content } = await render(entry);
+    return { entry, Content };
+  })
+);
+const fmt = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<BaseLayout title="News" description="VolleyVanguard announcements and event recaps.">
+  <section class="section">
+    <div class="wrap">
+      <SectionLabel text="Announcements" />
+      <h1 style="font-size:42px;color:var(--navy);margin-bottom:12px">News</h1>
+      <p style="color:var(--muted);max-width:640px;margin-bottom:36px">
+        Camp openings, tournament recaps, and the latest from the VolleyVanguard
+        community.
+      </p>
+      <div class="news-list">
+        {rendered.map(({ entry, Content }) => (
+          <article class="post">
+            {entry.data.cover && (
+              <img
+                class="cover"
+                src={entry.data.cover}
+                alt={entry.data.title}
+                loading="lazy"
+                decoding="async"
+              />
+            )}
+            <div class="post-body">
+              <div class="date">{fmt.format(entry.data.date)}</div>
+              <h2 class="title">{entry.data.title}</h2>
+              <div class="prose"><Content /></div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+<style>
+  .news-list { display:grid; gap:48px; }
+  .post {
+    background:#fff;
+    border-radius:var(--radius);
+    overflow:hidden;
+    box-shadow:0 8px 24px rgba(11,31,58,0.07);
+  }
+  .cover {
+    width:100%;
+    aspect-ratio:21/9;
+    object-fit:cover;
+    display:block;
+  }
+  .post-body { padding:28px 28px 32px; }
+  .date {
+    color:var(--coral);
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .title {
+    font-size:30px;
+    color:var(--navy);
+    margin-bottom:14px;
+  }
+  .prose {
+    color:var(--muted);
+    font-size:16px;
+    line-height:1.7;
+  }
+  .prose :global(p + p) { margin-top:14px; }
+</style>
