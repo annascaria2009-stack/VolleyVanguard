@@ -1,0 +1,214 @@
+---
+import site from '../data/site.json';
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/coaches', label: 'Coaches' },
+  { href: '/programs', label: 'Programs' },
+  { href: '/schedule', label: 'Schedule' },
+  { href: '/gallery', label: 'Gallery' },
+  { href: '/news', label: 'News' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<header class="site-header">
+  <div class="nav-inner">
+    <!-- Logo -->
+    <a href="/" class="logo" aria-label={`${site.name} home`}>
+      <span class="logo-square" aria-hidden="true"></span>
+      <span class="logo-text">
+        <strong>VOLLEY</strong><span class="logo-accent">VANGUARD</span>
+      </span>
+    </a>
+
+    <!-- Desktop nav links -->
+    <nav class="nav-links desktop-nav" aria-label="Primary navigation">
+      {navLinks.map((link) => (
+        <a href={link.href} class="nav-link">{link.label}</a>
+      ))}
+    </nav>
+
+    <!-- Mobile nav: CSS-only <details> toggle -->
+    <details class="mobile-nav">
+      <summary class="hamburger" aria-label="Toggle navigation">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </summary>
+      <nav class="mobile-dropdown" aria-label="Mobile navigation">
+        {navLinks.map((link) => (
+          <a href={link.href} class="nav-link mobile-link">{link.label}</a>
+        ))}
+      </nav>
+    </details>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    background: var(--navy);
+    color: #fff;
+    padding: 14px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Logo */
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .logo:focus-visible {
+    outline: 2px solid var(--coral);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  .logo-square {
+    width: 26px;
+    height: 26px;
+    background: var(--coral);
+    border-radius: 6px;
+    flex-shrink: 0;
+    display: inline-block;
+  }
+
+  .logo-text {
+    font-family: 'Archivo Black', Inter, sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+  }
+
+  .logo-accent {
+    color: var(--coral);
+  }
+
+  /* Desktop nav links */
+  .nav-link {
+    font-size: 14px;
+    font-weight: 600;
+    opacity: 0.9;
+    padding: 6px 10px;
+    border-radius: 6px;
+    color: #fff;
+    text-decoration: none;
+    transition: opacity 0.15s, background 0.15s;
+  }
+
+  .nav-link:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .nav-link:focus-visible {
+    outline: 2px solid var(--coral);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Desktop nav row */
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  /* Mobile nav: hidden by default on desktop */
+  .mobile-nav {
+    display: none;
+  }
+
+  /* Hamburger */
+  .hamburger {
+    list-style: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    user-select: none;
+  }
+
+  .hamburger::-webkit-details-marker {
+    display: none;
+  }
+
+  .hamburger:focus-visible {
+    outline: 2px solid var(--coral);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  .bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+  }
+
+  /* Mobile dropdown panel */
+  .mobile-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--navy-2);
+    padding: 12px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .mobile-link {
+    display: block;
+    padding: 10px 12px;
+    font-size: 15px;
+  }
+
+  .mobile-link:focus-visible {
+    outline: 2px solid var(--coral);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Responsive: switch at 720px */
+  @media (max-width: 720px) {
+    .desktop-nav {
+      display: none;
+    }
+
+    .mobile-nav {
+      display: block;
+      position: relative;
+    }
+  }
+
+  @media (min-width: 721px) {
+    .mobile-nav {
+      display: none;
+    }
+
+    .desktop-nav {
+      display: flex;
+    }
+  }
+</style>

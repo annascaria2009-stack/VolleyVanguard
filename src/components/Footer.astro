@@ -1,0 +1,96 @@
+---
+import site from '../data/site.json';
+
+const waNumber = site.whatsapp.replace(/[^\d]/g, '');
+---
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <!-- Top row: org name + tagline -->
+    <div class="footer-top">
+      <span class="footer-name">{site.name}</span>
+      <span class="footer-tagline">{site.tagline}</span>
+    </div>
+
+    <!-- Bottom row: copyright + contact links -->
+    <div class="footer-bottom">
+      <span class="footer-note">{site.footerNote}</span>
+      <div class="footer-links">
+        <a href={`mailto:${site.email}`} class="footer-link">Email</a>
+        <a href={`https://wa.me/${waNumber}`} class="footer-link" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href={site.instagram} class="footer-link" target="_blank" rel="noopener noreferrer">Instagram</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--navy-deep);
+    color: #9fb0c9;
+    padding: 40px 20px;
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  /* Top row */
+  .footer-top {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .footer-name {
+    font-family: 'Archivo Black', Inter, sans-serif;
+    font-size: 22px;
+    color: #fff;
+    letter-spacing: -0.3px;
+  }
+
+  .footer-tagline {
+    font-size: 14px;
+    color: #9fb0c9;
+    opacity: 0.85;
+  }
+
+  /* Bottom row */
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 13px;
+  }
+
+  .footer-note {
+    color: #9fb0c9;
+    opacity: 0.7;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 18px;
+  }
+
+  .footer-link {
+    color: #9fb0c9;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.15s;
+  }
+
+  .footer-link:hover {
+    color: #fff;
+  }
+
+  .footer-link:focus-visible {
+    outline: 2px solid var(--coral);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+</style>
