@@ -78,6 +78,11 @@ a {
   filter: brightness(1.07);
 }
 
+.btn:focus-visible {
+  outline: 2px solid var(--coral);
+  outline-offset: 2px;
+}
+
 /* Helpers */
 .grid {
   display: grid;
