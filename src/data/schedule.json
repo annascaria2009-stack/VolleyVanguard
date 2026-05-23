@@ -1,0 +1,8 @@
+{
+  "intro": "Here's our weekly training schedule. Contact us to register for any session.",
+  "rows": [
+    { "day": "Monday", "time": "6:00–8:00 PM", "program": "Junior Development", "level": "Beginner", "location": "Main Court" },
+    { "day": "Wednesday", "time": "6:00–8:00 PM", "program": "Competitive Team", "level": "Advanced", "location": "Main Court" },
+    { "day": "Saturday", "time": "10:00 AM–12:00 PM", "program": "Skills Clinic", "level": "All", "location": "Beach Courts" }
+  ]
+}
