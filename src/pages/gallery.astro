@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import GalleryGrid from '../components/GalleryGrid.astro';
+import { getCollection } from 'astro:content';
+
+const entries = (await getCollection('gallery')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+const items = entries.map((e) => ({ image: e.data.image, caption: e.data.caption }));
+---
+<BaseLayout title="Gallery" description="Photos of VolleyVanguard coaches and events.">
+  <section class="section">
+    <div class="wrap">
+      <SectionLabel text="From the Court" />
+      <h1 style="font-size:42px;color:var(--navy);margin-bottom:12px">Gallery</h1>
+      <p style="color:var(--muted);max-width:640px;margin-bottom:36px">
+        Moments from our coaching sessions, clinics, and events.
+      </p>
+      <GalleryGrid items={items} />
+    </div>
+  </section>
+</BaseLayout>

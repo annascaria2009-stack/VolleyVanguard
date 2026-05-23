@@ -1,0 +1,67 @@
+---
+interface Props {
+  items: { image: string; caption?: string }[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="gallery-grid">
+  {items.map((item) => (
+    <figure class="tile">
+      <img
+        src={item.image}
+        alt={item.caption ?? 'VolleyVanguard photo'}
+        loading="lazy"
+        decoding="async"
+      />
+      {item.caption && <figcaption class="caption">{item.caption}</figcaption>}
+    </figure>
+  ))}
+</div>
+
+<style>
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+  }
+
+  .tile {
+    position: relative;
+    aspect-ratio: 4/3;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--surface);
+  }
+
+  .tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .tile:hover img {
+    transform: scale(1.04);
+  }
+
+  .tile .caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, transparent, rgba(7, 21, 43, 0.85));
+    color: #fff;
+    padding: 14px 16px;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .tile:hover .caption,
+  .tile:focus-within .caption {
+    opacity: 1;
+  }
+</style>
