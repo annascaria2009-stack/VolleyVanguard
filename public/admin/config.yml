@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: suscaria/Volleyvanguard
+  repo: annascaria2009-stack/VolleyVanguard
   branch: main
 
 media_folder: "public/images/uploads"
