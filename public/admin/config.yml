@@ -1,0 +1,111 @@
+backend:
+  name: github
+  repo: suscaria/Volleyvanguard
+  branch: main
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: site
+    label: "Site Settings"
+    files:
+      - name: site
+        label: "Site & Contact"
+        file: "src/data/site.json"
+        fields:
+          - { name: name, label: "Organization Name", widget: string }
+          - { name: tagline, label: "Tagline", widget: string }
+          - { name: email, label: "Email", widget: string }
+          - { name: whatsapp, label: "WhatsApp Number", widget: string, hint: "Include country code, e.g. +1234567890" }
+          - { name: instagram, label: "Instagram URL", widget: string }
+          - { name: footerNote, label: "Footer Note", widget: string }
+      - name: home
+        label: "Home Page"
+        file: "src/data/home.json"
+        fields:
+          - { name: heroHeading, label: "Hero Heading", widget: string }
+          - { name: heroSubtext, label: "Hero Subtext", widget: text }
+          - { name: heroImage, label: "Hero Image", widget: image }
+          - { name: intro, label: "Intro Paragraph", widget: text }
+          - name: stats
+            label: "Highlight Stats"
+            widget: list
+            fields:
+              - { name: value, label: "Value", widget: string }
+              - { name: label, label: "Label", widget: string }
+      - name: about
+        label: "About Page"
+        file: "src/data/about.json"
+        fields:
+          - { name: heading, label: "Heading", widget: string }
+          - { name: image, label: "Hero Image", widget: image }
+          - { name: body, label: "Body (paragraphs separated by a blank line)", widget: text }
+      - name: schedule
+        label: "Schedule"
+        file: "src/data/schedule.json"
+        fields:
+          - { name: intro, label: "Intro", widget: text }
+          - name: rows
+            label: "Sessions"
+            widget: list
+            fields:
+              - { name: day, label: "Day", widget: string }
+              - { name: time, label: "Time", widget: string }
+              - { name: program, label: "Program", widget: string }
+              - { name: level, label: "Level", widget: string }
+              - { name: location, label: "Location", widget: string }
+
+  - name: coaches
+    label: "Coaches"
+    label_singular: "Coach"
+    folder: "src/content/coaches"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: name, label: "Name", widget: string }
+      - { name: role, label: "Role", widget: string }
+      - { name: photo, label: "Photo", widget: image }
+      - { name: order, label: "Display Order", widget: number, default: 0, value_type: int }
+      - { name: body, label: "Bio", widget: markdown }
+
+  - name: programs
+    label: "Programs"
+    label_singular: "Program"
+    folder: "src/content/programs"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: title, label: "Title", widget: string }
+      - { name: image, label: "Image", widget: image }
+      - { name: order, label: "Display Order", widget: number, default: 0, value_type: int }
+      - { name: body, label: "Description", widget: markdown }
+
+  - name: gallery
+    label: "Gallery"
+    label_singular: "Photo"
+    folder: "src/content/gallery"
+    create: true
+    slug: "{{slug}}"
+    format: frontmatter
+    fields:
+      - { name: image, label: "Photo", widget: image }
+      - { name: caption, label: "Caption", widget: string, required: false }
+      - name: category
+        label: "Category"
+        widget: select
+        options: ["coach", "event"]
+        default: "event"
+      - { name: order, label: "Display Order", widget: number, default: 0, value_type: int }
+
+  - name: news
+    label: "News"
+    label_singular: "News post"
+    folder: "src/content/news"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { name: title, label: "Title", widget: string }
+      - { name: date, label: "Date", widget: datetime }
+      - { name: cover, label: "Cover Image", widget: image, required: false }
+      - { name: body, label: "Body", widget: markdown }
