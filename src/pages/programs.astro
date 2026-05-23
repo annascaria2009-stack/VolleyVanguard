@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import ProgramCard from '../components/ProgramCard.astro';
+import { getCollection, render } from 'astro:content';
+
+const programs = (await getCollection('programs')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+const rendered = await Promise.all(
+  programs.map(async (entry) => {
+    const { Content } = await render(entry);
+    return { entry, Content };
+  })
+);
+---
+<BaseLayout title="Programs" description="VolleyVanguard coaching programs.">
+  <section class="section">
+    <div class="wrap">
+      <SectionLabel text="What We Offer" />
+      <h1 style="font-size:42px;color:var(--navy);margin-bottom:12px">Programs</h1>
+      <p style="color:var(--muted);max-width:640px;margin-bottom:36px">
+        From first touches to competitive play, we offer programs designed to
+        meet every player where they are and help them grow.
+      </p>
+      <div class="program-grid">
+        {rendered.map(({ entry, Content }) => (
+          <ProgramCard title={entry.data.title} image={entry.data.image}>
+            <Content />
+          </ProgramCard>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+<style>
+  .program-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+  }
+</style>
