@@ -25,7 +25,7 @@ const rendered = await Promise.all(
       </p>
       <div class="program-grid">
         {rendered.map(({ entry, Content }) => (
-          <ProgramCard title={entry.data.title} image={entry.data.image}>
+          <ProgramCard title={entry.data.title} image={entry.data.image} ctaUrl={entry.data.ctaUrl} ctaText={entry.data.ctaText}>
             <Content />
           </ProgramCard>
         ))}

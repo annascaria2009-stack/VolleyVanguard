@@ -1,6 +1,6 @@
 ---
-image: "https://picsum.photos/seed/gal4/800/600"
-caption: "Junior camp opening day"
+image: "/images/uploads/court-bump-pink.jpg"
+caption: "Locked in on the bump"
 category: "coach"
 order: 4
 ---

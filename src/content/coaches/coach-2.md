@@ -1,8 +1,9 @@
 ---
-name: "Maya Patel"
-role: "Setter Coach"
-photo: "https://picsum.photos/seed/coach2/600/700"
+name: "Leon Varghese"
+role: "Head Coach"
+photo: "/images/uploads/leon.jpg"
+photoPosition: "top"
 order: 2
 ---
 
-Maya is a former collegiate setter who now channels her expertise into developing sharp, creative playmakers. Her sessions are fast-paced, detail-oriented, and always fun.
+Hey, I'm Leon! I currently play as an opposite hitter for MVVC. I've been playing volleyball for 3 years and it's become one of my biggest passions. I'm really looking forward to coaching at VolleyVanguard and helping younger players improve their game and have fun on the court!

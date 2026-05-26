@@ -1,6 +1,6 @@
 ---
-image: "https://picsum.photos/seed/gal3/800/600"
-caption: "Team huddle before match"
+image: "/images/uploads/court-play.jpg"
+caption: "Bump, set, spike"
 category: "event"
 order: 3
 ---

@@ -1,6 +1,6 @@
 ---
-image: "https://picsum.photos/seed/gal5/800/600"
-caption: "Setter clinic warmup"
+image: "/images/uploads/about-team.jpg"
+caption: "The coaching team"
 category: "event"
 order: 5
 ---

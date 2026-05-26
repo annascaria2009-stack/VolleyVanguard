@@ -7,6 +7,7 @@ const coaches = defineCollection({
     name: z.string(),
     role: z.string(),
     photo: z.string(),
+    photoPosition: z.string().optional(),
     order: z.number().default(0),
   }),
 });
@@ -16,6 +17,8 @@ const programs = defineCollection({
   schema: z.object({
     title: z.string(),
     image: z.string(),
+    ctaUrl: z.string().optional(),
+    ctaText: z.string().optional(),
     order: z.number().default(0),
   }),
 });

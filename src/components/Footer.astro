@@ -1,7 +1,5 @@
 ---
 import site from '../data/site.json';
-
-const waNumber = site.whatsapp.replace(/[^\d]/g, '');
 ---
 
 <footer class="site-footer">
@@ -17,7 +15,6 @@ const waNumber = site.whatsapp.replace(/[^\d]/g, '');
       <span class="footer-note">{site.footerNote}</span>
       <div class="footer-links">
         <a href={`mailto:${site.email}`} class="footer-link">Email</a>
-        <a href={`https://wa.me/${waNumber}`} class="footer-link" target="_blank" rel="noopener noreferrer">WhatsApp</a>
         <a href={site.instagram} class="footer-link" target="_blank" rel="noopener noreferrer">Instagram</a>
       </div>
     </div>

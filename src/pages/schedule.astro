@@ -6,35 +6,31 @@ import schedule from '../data/schedule.json';
 <BaseLayout title="Schedule" description="VolleyVanguard weekly training schedule.">
   <section class="section">
     <div class="wrap">
-      <SectionLabel text="Weekly Schedule" />
+      <SectionLabel text="Summer Schedule" />
       <h1 class="title">Training Schedule</h1>
       <p class="intro">{schedule.intro}</p>
 
       <table class="sched">
         <thead>
           <tr>
+            <th>Date</th>
             <th>Day</th>
             <th>Time</th>
-            <th>Program</th>
-            <th>Level</th>
-            <th>Location</th>
           </tr>
         </thead>
         <tbody>
           {schedule.rows.map((r) => (
             <tr>
+              <td data-label="Date">{r.date}</td>
               <td data-label="Day">{r.day}</td>
               <td data-label="Time">{r.time}</td>
-              <td data-label="Program">{r.program}</td>
-              <td data-label="Level">{r.level}</td>
-              <td data-label="Location">{r.location}</td>
             </tr>
           ))}
         </tbody>
       </table>
 
       <div class="cta-row">
-        <a href="/contact" class="btn">Contact us to register →</a>
+        <a href="https://forms.gle/J3M7mPKMKhG4AchW6" class="btn" target="_blank" rel="noopener noreferrer">Register now →</a>
       </div>
     </div>
   </section>

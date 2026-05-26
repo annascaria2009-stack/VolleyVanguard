@@ -1,6 +1,6 @@
 ---
-image: "https://picsum.photos/seed/gal2/800/600"
-caption: "Coach Anna leading a drill"
+image: "/images/uploads/court-drills.jpg"
+caption: "Coaches running a drill with campers"
 category: "coach"
 order: 2
 ---

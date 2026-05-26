@@ -1,8 +1,15 @@
 {
-  "intro": "Here's our weekly training schedule. Contact us to register for any session.",
+  "intro": "Here's our summer schedule for 2026!",
   "rows": [
-    { "day": "Monday", "time": "6:00–8:00 PM", "program": "Junior Development", "level": "Beginner", "location": "Main Court" },
-    { "day": "Wednesday", "time": "6:00–8:00 PM", "program": "Competitive Team", "level": "Advanced", "location": "Main Court" },
-    { "day": "Saturday", "time": "10:00 AM–12:00 PM", "program": "Skills Clinic", "level": "All", "location": "Beach Courts" }
+    { "date": "06/15/2026", "day": "Monday", "time": "6:00–7:30 PM" },
+    { "date": "06/22/2026", "day": "Monday", "time": "6:00–7:30 PM" },
+    { "date": "06/26/2026", "day": "Friday", "time": "6:00–7:30 PM" },
+    { "date": "06/29/2026", "day": "Monday", "time": "6:00–7:30 PM" },
+    { "date": "07/08/2026", "day": "Wednesday", "time": "6:00–7:30 PM" },
+    { "date": "07/10/2026", "day": "Friday", "time": "6:00–7:30 PM" },
+    { "date": "07/13/2026", "day": "Monday", "time": "6:00–7:30 PM" },
+    { "date": "07/17/2026", "day": "Friday", "time": "6:00–7:30 PM" },
+    { "date": "07/20/2026", "day": "Monday", "time": "6:00–7:30 PM" },
+    { "date": "07/24/2026", "day": "Friday", "time": "6:00–7:30 PM" }
   ]
 }

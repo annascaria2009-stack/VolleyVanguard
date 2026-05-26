@@ -1,6 +1,6 @@
 ---
-image: "https://picsum.photos/seed/gal6/800/600"
-caption: "Tournament victory smile"
+image: "/images/uploads/court-bump-blue.jpg"
+caption: "Eyes on the ball"
 category: "coach"
 order: 6
 ---

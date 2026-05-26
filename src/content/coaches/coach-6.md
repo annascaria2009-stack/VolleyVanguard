@@ -1,8 +1,8 @@
 ---
-name: "Leo Tanaka"
-role: "Assistant Coach"
-photo: "https://picsum.photos/seed/coach6/600/700"
+name: "Joann Mathew"
+role: "Head Coach"
+photo: "/images/uploads/joann.jpg"
 order: 6
 ---
 
-Leo supports every aspect of training, from warm-up organization to post-practice film review. His attention to detail and willingness to go the extra mile make him an indispensable part of the VolleyVanguard staff.
+Hi, I'm Joann! I am excited to be a coach for the camp, and I am excited to help younger players develop their passion for volleyball. I started playing volleyball 4 years ago, and I am a middle blocker. I am ready and excited to share my passion with young athletes!

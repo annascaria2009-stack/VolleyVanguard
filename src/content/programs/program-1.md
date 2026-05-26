@@ -1,7 +1,9 @@
 ---
-title: "Junior Development"
-image: "https://picsum.photos/seed/prog1/600/400"
+title: "Summer 2026 Registration"
+image: "/images/uploads/summer-2026-flyer.jpg"
+ctaUrl: "https://tinyurl.com/Volley-Vanguard"
+ctaText: "Register now →"
 order: 1
 ---
 
-Our Junior Development program gives young athletes aged 8–14 a solid foundation in volleyball fundamentals — passing, setting, and serving — in a supportive, high-energy environment. Small class sizes ensure every player receives personal attention and grows at their own pace.
+Kids volleyball coaching led by talented high school club athletes. Ages 8–12, at Milpitas Gill Park. Players will learn the fundamentals, teamwork, and confidence through play — all in a fun, safe, beginner-friendly setting. All camp proceeds will be donated to help youth in need gain access to sports.

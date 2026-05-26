@@ -3,9 +3,10 @@ interface Props {
   name: string;
   role: string;
   photo: string;
+  photoPosition?: string;
 }
 
-const { name, role, photo } = Astro.props;
+const { name, role, photo, photoPosition } = Astro.props;
 ---
 
 <article class="card">
@@ -13,6 +14,7 @@ const { name, role, photo } = Astro.props;
     src={photo}
     alt={`${name} — ${role}`}
     class="photo"
+    style={photoPosition ? `object-position: ${photoPosition}` : undefined}
     loading="lazy"
     decoding="async"
   />

@@ -2,8 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionLabel from '../components/SectionLabel.astro';
 import site from '../data/site.json';
-
-const waNumber = site.whatsapp.replace(/[^\d]/g, '');
 ---
 <BaseLayout title="Contact" description="Get in touch with VolleyVanguard.">
   <section class="section">
@@ -54,14 +52,8 @@ const waNumber = site.whatsapp.replace(/[^\d]/g, '');
               <a href={`mailto:${site.email}`}>{site.email}</a>
             </li>
             <li>
-              <span class="ch-label">WhatsApp</span>
-              <a href={`https://wa.me/${waNumber}`} target="_blank" rel="noopener noreferrer">
-                Chat with us
-              </a>
-            </li>
-            <li>
               <span class="ch-label">Instagram</span>
-              <a href={site.instagram} target="_blank" rel="noopener noreferrer">@volleyvanguard</a>
+              <a href={site.instagram} target="_blank" rel="noopener noreferrer">@volley_vanguard</a>
             </li>
           </ul>
         </aside>

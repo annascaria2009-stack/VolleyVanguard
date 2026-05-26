@@ -19,7 +19,7 @@ const renderedCoaches = await Promise.all(
 
 const galleryItems = (await getCollection('gallery'))
   .sort((a, b) => a.data.order - b.data.order)
-  .slice(0, 4)
+  .slice(0, 3)
   .map((e) => ({ image: e.data.image, caption: e.data.caption }));
 ---
 <BaseLayout title="Home" description="Elite volleyball coaching by the VolleyVanguard team.">
@@ -46,7 +46,7 @@ const galleryItems = (await getCollection('gallery'))
       <h2 class="section-title">A team that lifts each other</h2>
       <div class="coach-grid">
         {renderedCoaches.map(({ entry, Content }) => (
-          <CoachCard name={entry.data.name} role={entry.data.role} photo={entry.data.photo}>
+          <CoachCard name={entry.data.name} role={entry.data.role} photo={entry.data.photo} photoPosition={entry.data.photoPosition}>
             <Content />
           </CoachCard>
         ))}

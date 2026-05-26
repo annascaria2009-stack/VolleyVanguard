@@ -2,9 +2,12 @@
 interface Props {
   title: string;
   image: string;
+  ctaUrl?: string;
+  ctaText?: string;
 }
 
-const { title, image } = Astro.props;
+const { title, image, ctaUrl = '/contact', ctaText = 'Contact us →' } = Astro.props;
+const isExternal = ctaUrl.startsWith('http');
 ---
 
 <article class="card">
@@ -20,7 +23,12 @@ const { title, image } = Astro.props;
     <div class="description">
       <slot />
     </div>
-    <a href="/contact" class="program-cta">Contact us →</a>
+    <a
+      href={ctaUrl}
+      class="program-cta"
+      target={isExternal ? '_blank' : undefined}
+      rel={isExternal ? 'noopener noreferrer' : undefined}
+    >{ctaText}</a>
   </div>
 </article>
 
