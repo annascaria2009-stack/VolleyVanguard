@@ -4,20 +4,66 @@ import SectionLabel from '../components/SectionLabel.astro';
 import GalleryGrid from '../components/GalleryGrid.astro';
 import { getCollection } from 'astro:content';
 
-const entries = (await getCollection('gallery')).sort(
-  (a, b) => a.data.order - b.data.order
-);
-const items = entries.map((e) => ({ image: e.data.image, caption: e.data.caption }));
+const entries = await getCollection('gallery');
+
+const groupsMap = new Map<number, typeof entries>();
+for (const entry of entries) {
+  const list = groupsMap.get(entry.data.year) ?? [];
+  list.push(entry);
+  groupsMap.set(entry.data.year, list);
+}
+
+const groups = [...groupsMap.entries()]
+  .sort(([a], [b]) => b - a)
+  .map(([year, list]) => {
+    const sorted = list.sort((a, b) => a.data.order - b.data.order);
+    const season = sorted.find((e) => e.data.season)?.data.season;
+    return {
+      year,
+      label: season ? `${year} ${season} Camp` : `${year}`,
+      items: sorted.map((e) => ({ image: e.data.image, caption: e.data.caption })),
+    };
+  });
 ---
 <BaseLayout title="Gallery" description="Photos of VolleyVanguard coaches and events.">
   <section class="section">
     <div class="wrap">
       <SectionLabel text="From the Court" />
-      <h1 style="font-size:42px;color:var(--navy);margin-bottom:12px">Gallery</h1>
-      <p style="color:var(--muted);max-width:640px;margin-bottom:36px">
+      <h1 class="page-title">Gallery</h1>
+      <p class="page-intro">
         Moments from our coaching sessions, clinics, and events.
       </p>
-      <GalleryGrid items={items} />
+
+      {groups.map((group) => (
+        <div class="year-block">
+          <h2 class="year-title">{group.label}</h2>
+          <GalleryGrid items={group.items} />
+        </div>
+      ))}
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .page-title {
+    font-size: 42px;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+  .page-intro {
+    color: var(--muted);
+    max-width: 640px;
+    margin-bottom: 36px;
+  }
+  .year-block + .year-block {
+    margin-top: 48px;
+  }
+  .year-title {
+    font-size: 26px;
+    color: var(--navy);
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--coral);
+    display: inline-block;
+  }
+</style>

@@ -29,6 +29,8 @@ const gallery = defineCollection({
     image: z.string(),
     caption: z.string().optional(),
     category: z.enum(['coach', 'event']).default('event'),
+    year: z.number().default(2025),
+    season: z.string().optional(),
     order: z.number().default(0),
   }),
 });
