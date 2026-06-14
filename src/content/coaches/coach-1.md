@@ -1,6 +1,6 @@
 ---
 name: "Anna Scaria"
-role: "Founder/Head Coach"
+role: "Head Coach"
 photo: "/images/uploads/anna.jpg"
 order: 1
 ---
