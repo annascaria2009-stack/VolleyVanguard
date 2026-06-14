@@ -8,8 +8,7 @@ import { getCollection, render } from 'astro:content';
 import home from '../data/home.json';
 
 const coaches = (await getCollection('coaches'))
-  .sort((a, b) => a.data.order - b.data.order)
-  .slice(0, 4);
+  .sort((a, b) => a.data.order - b.data.order);
 const renderedCoaches = await Promise.all(
   coaches.map(async (entry) => {
     const { Content } = await render(entry);
