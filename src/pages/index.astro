@@ -114,8 +114,14 @@ const galleryItems = (await getCollection('gallery'))
   }
   .coach-grid {
     display:grid;
-    grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns:repeat(3, 1fr);
     gap:24px;
+  }
+  @media (max-width:860px) {
+    .coach-grid { grid-template-columns:repeat(2, 1fr); }
+  }
+  @media (max-width:520px) {
+    .coach-grid { grid-template-columns:1fr; }
   }
   .more-link {
     margin-top:24px;
