@@ -4,7 +4,7 @@
   "heroImage": "/images/uploads/court-mvp.jpg",
   "intro": "We're a team of high school club athletes who live and breathe volleyball. VolleyVanguard is all about bringing the community together, helping younger kids learn the game, and having a blast on the court. No experience needed—we're ready to play, improve, and rise together!",
   "stats": [
-    { "value": "6", "label": "Expert Coaches" },
+    { "value": "9", "label": "Expert Coaches" },
     { "value": "All", "label": "Skill Levels" },
     { "value": "100%", "label": "Team Spirit" }
   ]
