@@ -56,15 +56,16 @@ const yesNoQuestions = [
       </p>
 
       <form
-        name="feedback"
         method="POST"
-        action="/feedback-thanks"
-        data-netlify="true"
-        netlify-honeypot="bot-field"
+        action="https://formsubmit.co/volleyvanguard@gmail.com"
         class="form"
       >
-        <input type="hidden" name="form-name" value="feedback" />
-        <p class="hp"><label>Don't fill this out: <input name="bot-field" /></label></p>
+        <!-- FormSubmit config: emails each submission to the address above. -->
+        <input type="hidden" name="_subject" value="New VolleyVanguard camp feedback" />
+        <input type="hidden" name="_next" value="https://volleyvanguard.netlify.app/feedback-thanks" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <p class="hp"><label>Don't fill this out: <input name="_honey" /></label></p>
 
         <div class="identity">
           <label class="field field-top">
