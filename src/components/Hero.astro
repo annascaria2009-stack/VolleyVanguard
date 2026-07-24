@@ -3,9 +3,17 @@ interface Props {
   heading: string;
   subtext: string;
   image: string;
+  ctaUrl?: string;
+  ctaText?: string;
 }
 
-const { heading, subtext, image } = Astro.props;
+const {
+  heading,
+  subtext,
+  image,
+  ctaUrl = '/contact',
+  ctaText = 'Get in touch →',
+} = Astro.props;
 ---
 
 <section class="hero">
@@ -14,7 +22,7 @@ const { heading, subtext, image } = Astro.props;
   <div class="wrap">
     <h1>{heading}</h1>
     <p>{subtext}</p>
-    <a href="/contact" class="btn" style="margin-top:28px">Get in touch →</a>
+    <a href={ctaUrl} class="btn" style="margin-top:28px">{ctaText}</a>
   </div>
 </section>
 

@@ -1,0 +1,304 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import site from '../data/site.json';
+
+const yesNoQuestions = [
+  {
+    name: 'enjoyed-camp',
+    label: 'Did your child enjoy VolleyVanguard Summer Camp?',
+  },
+  {
+    name: 'coaching-age-appropriate',
+    label: 'Was the coaching appropriate and understanding for their age group?',
+  },
+  {
+    name: 'skills-improved',
+    label: "Did you see an improvement in your child's volleyball skills?",
+  },
+  {
+    name: 'communication-clear',
+    label: 'Was the communication from the camp team clear and helpful?',
+  },
+  {
+    name: 'workshop-interest',
+    label:
+      'Would you or your child be interested in attending a monthly volleyball workshop in the future?',
+  },
+  {
+    name: 'photo-consent',
+    label:
+      'Are you okay with us using photos of your child on our social media and website?',
+    note: 'We took some pictures during VolleyVanguard Summer Camp that we’d like to post on our social media and website.',
+  },
+  {
+    name: 'testimonial-willing',
+    label:
+      'Would you be open to sharing a short testimonial about your experience with VolleyVanguard?',
+  },
+];
+---
+
+<BaseLayout
+  title="Feedback"
+  description="Share your feedback on VolleyVanguard Summer Camp and help us make next year even better."
+>
+  <section class="section">
+    <div class="wrap">
+      <SectionLabel text="We'd Love to Hear From You" />
+      <h1 class="title">Camp Feedback</h1>
+      <p class="intro">
+        Thank you for entrusting us with your child's volleyball experience at VolleyVanguard
+        Summer Camp! We'd love to hear your feedback about your child's experience, including
+        what they enjoyed, areas for improvement, and any suggestions you might have.
+        Additionally, we are considering offering a monthly volleyball workshop. Please take a
+        moment to share your thoughts!
+      </p>
+
+      <form
+        name="feedback"
+        method="POST"
+        action="/feedback-thanks"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        class="form"
+      >
+        <input type="hidden" name="form-name" value="feedback" />
+        <p class="hp"><label>Don't fill this out: <input name="bot-field" /></label></p>
+
+        <div class="identity">
+          <label class="field field-top">
+            <span>Your name</span>
+            <input type="text" name="parent-name" required />
+          </label>
+          <label class="field field-top">
+            <span>Email</span>
+            <input type="email" name="parent-email" required />
+          </label>
+          <label class="field field-top">
+            <span>Your child's name <em>(optional)</em></span>
+            <input type="text" name="child-name" />
+          </label>
+        </div>
+
+        {yesNoQuestions.map((q) => (
+          <fieldset class="q">
+            {q.note && <p class="q-note">{q.note}</p>}
+            <legend class="q-label">{q.label}</legend>
+            <div class="choices">
+              <label class="choice">
+                <input type="radio" name={q.name} value="Yes" required />
+                <span>Yes</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name={q.name} value="No" />
+                <span>No</span>
+              </label>
+            </div>
+          </fieldset>
+        ))}
+
+        <label class="field">
+          <span>If yes, please share your experience.</span>
+          <textarea name="testimonial-text" rows="4"></textarea>
+        </label>
+
+        <label class="field">
+          <span>Any suggestions or feedback to improve the camp experience?</span>
+          <textarea name="suggestions" rows="4"></textarea>
+        </label>
+
+        <button type="submit" class="btn">Submit feedback →</button>
+      </form>
+
+      <p class="outro">
+        Thank you for your valuable feedback and support! If you have any further questions,
+        feel free to contact us at <a href={`mailto:${site.email}`}>{site.email}</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .title {
+    font-size: 42px;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+  .intro {
+    color: var(--muted);
+    max-width: 700px;
+    margin-bottom: 32px;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
+  .form {
+    display: grid;
+    gap: 22px;
+    background: #fff;
+    padding: 28px;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 24px rgba(11, 31, 58, 0.07);
+    max-width: 760px;
+  }
+
+  /* Yes/No question blocks */
+  .q {
+    border: 0;
+    display: grid;
+    gap: 10px;
+  }
+  .q + .q {
+    border-top: 1px solid #eef2f8;
+    padding-top: 20px;
+  }
+  .q-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.45;
+    padding: 0;
+  }
+  .q-note {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .choices {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .choice {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 92px;
+    padding: 10px 22px;
+    border: 1px solid #d9e0ec;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--navy);
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+  }
+  .choice:hover {
+    border-color: var(--coral);
+  }
+  /* Visually hide the native radio but keep it focusable/accessible */
+  .choice input {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    cursor: pointer;
+  }
+  .choice:has(input:checked) {
+    background: var(--coral);
+    border-color: var(--coral);
+    color: #fff;
+  }
+  .choice:has(input:focus-visible) {
+    outline: 2px solid var(--coral);
+    outline-offset: 2px;
+  }
+
+  /* Name / email block at the top of the form */
+  .identity {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: 1fr 1fr;
+  }
+  .identity .field:first-child,
+  .identity .field:nth-child(2) {
+    grid-column: span 1;
+  }
+  .identity .field:nth-child(3) {
+    grid-column: 1 / -1;
+  }
+  .field-top {
+    border-top: 0 !important;
+    padding-top: 0 !important;
+  }
+  .field span em {
+    font-style: normal;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--muted);
+  }
+
+  /* Free-text fields */
+  .field {
+    display: grid;
+    gap: 6px;
+    border-top: 1px solid #eef2f8;
+    padding-top: 20px;
+  }
+  .field span {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--navy);
+    text-transform: uppercase;
+  }
+  .field input,
+  .field textarea {
+    font: inherit;
+    font-size: 15px;
+    color: var(--ink);
+    padding: 12px 14px;
+    border: 1px solid #d9e0ec;
+    border-radius: 8px;
+    background: #fff;
+    resize: vertical;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .field input:focus,
+  .field textarea:focus {
+    outline: none;
+    border-color: var(--coral);
+    box-shadow: 0 0 0 3px rgba(255, 90, 60, 0.18);
+  }
+
+  .form .btn {
+    justify-self: flex-start;
+    margin-top: 4px;
+  }
+  .hp {
+    display: none;
+  }
+
+  .outro {
+    margin-top: 28px;
+    max-width: 760px;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .outro a {
+    color: var(--navy);
+    font-weight: 600;
+  }
+
+  @media (max-width: 760px) {
+    .title {
+      font-size: 32px;
+    }
+    .form {
+      padding: 22px 18px;
+    }
+    .choice {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+    .identity {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

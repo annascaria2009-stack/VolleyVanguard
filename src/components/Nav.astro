@@ -10,6 +10,7 @@ const navLinks = [
   { href: '/gallery', label: 'Gallery' },
   { href: '/news', label: 'News' },
   { href: '/contact', label: 'Contact' },
+  { href: '/feedback', label: 'Feedback' },
 ];
 ---
 
@@ -190,8 +191,8 @@ const navLinks = [
     border-radius: 4px;
   }
 
-  /* Responsive: switch at 720px */
-  @media (max-width: 720px) {
+  /* Responsive: switch at 900px (9 nav items need ~880px on desktop) */
+  @media (max-width: 900px) {
     .desktop-nav {
       display: none;
     }
@@ -201,7 +202,7 @@ const navLinks = [
     }
   }
 
-  @media (min-width: 721px) {
+  @media (min-width: 901px) {
     .mobile-nav {
       display: none;
     }

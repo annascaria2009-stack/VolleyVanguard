@@ -22,7 +22,13 @@ const galleryItems = (await getCollection('gallery'))
   .map((e) => ({ image: e.data.image, caption: e.data.caption }));
 ---
 <BaseLayout title="Home" description="Elite volleyball coaching by the VolleyVanguard team.">
-  <Hero heading={home.heroHeading} subtext={home.heroSubtext} image={home.heroImage} />
+  <Hero
+    heading={home.heroHeading}
+    subtext={home.heroSubtext}
+    image={home.heroImage}
+    ctaUrl="/feedback"
+    ctaText="Share your feedback →"
+  />
 
   <section class="section">
     <div class="wrap" style="text-align:center">
