@@ -57,10 +57,14 @@ const yesNoQuestions = [
 
       <form
         method="POST"
-        action="https://formsubmit.co/volleyvanguard@gmail.com"
+        action="https://formsubmit.co/f83ed5c7a693fba3ed0e460e64112ba0"
         class="form"
       >
-        <!-- FormSubmit config: emails each submission to the address above. -->
+        <!--
+          FormSubmit config. The action uses FormSubmit's alias token rather than
+          the raw address so volleyvanguard@gmail.com is not exposed to scrapers
+          in the page source. Submissions still email to that address.
+        -->
         <input type="hidden" name="_subject" value="New VolleyVanguard camp feedback" />
         <input type="hidden" name="_next" value="https://volleyvanguard.netlify.app/feedback-thanks" />
         <input type="hidden" name="_template" value="table" />
