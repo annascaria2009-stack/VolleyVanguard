@@ -1,8 +1,8 @@
 ---
-name: "Joseph Binu"
-role: "Head Coach"
-photo: "/images/uploads/joseph.jpg"
-order: 7
+name: "Maya Sidhartha"
+role: "Coordinator / Photographer"
+photo: "/images/uploads/maya.jpg"
+order: 10
 ---
 
-Hello! My name is Joseph, and I'm so grateful for the opportunity to volunteer at VolleyVanguard Camp. I've been playing volleyball for the past three years and have loved it ever since. I'm looking forward to working with the kids and watching them grow and thrive through the game!
+Hi, I'm Maya! I'm currently in 11th grade and specialize in sports photography for our school yearbook club. I love volunteering and working with kids, making VolleyVanguard the perfect place for me to do both! In my role as coordinator and photographer, I'm super excited to capture moments on the court and help these kids grow into amazing athletes!
