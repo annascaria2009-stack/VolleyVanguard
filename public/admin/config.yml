@@ -104,6 +104,7 @@ collections:
         default: "Summer"
         required: false
       - { name: order, label: "Display Order", widget: number, default: 0, value_type: int }
+      - { name: wide, label: "Full-width (panorama)", widget: boolean, default: false, required: false, hint: "Span the full grid width instead of cropping to 4:3. Use for wide group shots." }
 
   - name: news
     label: "News"

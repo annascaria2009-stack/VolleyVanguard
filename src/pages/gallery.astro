@@ -21,7 +21,11 @@ const groups = [...groupsMap.entries()]
     return {
       year,
       label: season ? `${year} ${season} Camp` : `${year}`,
-      items: sorted.map((e) => ({ image: e.data.image, caption: e.data.caption })),
+      items: sorted.map((e) => ({
+        image: e.data.image,
+        caption: e.data.caption,
+        wide: e.data.wide,
+      })),
     };
   });
 ---

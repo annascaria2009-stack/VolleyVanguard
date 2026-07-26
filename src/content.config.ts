@@ -32,6 +32,8 @@ const gallery = defineCollection({
     year: z.number().default(2025),
     season: z.string().optional(),
     order: z.number().default(0),
+    // Panoramas span the full grid width instead of being cropped to 4:3.
+    wide: z.boolean().default(false),
   }),
 });
 

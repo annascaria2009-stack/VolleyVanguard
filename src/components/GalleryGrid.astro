@@ -1,6 +1,6 @@
 ---
 interface Props {
-  items: { image: string; caption?: string }[];
+  items: { image: string; caption?: string; wide?: boolean }[];
 }
 
 const { items } = Astro.props;
@@ -8,7 +8,7 @@ const { items } = Astro.props;
 
 <div class="gallery-grid">
   {items.map((item) => (
-    <figure class="tile">
+    <figure class:list={['tile', item.wide && 'tile-wide']}>
       <img
         src={item.image}
         alt={item.caption ?? 'VolleyVanguard photo'}
@@ -33,6 +33,12 @@ const { items } = Astro.props;
     border-radius: var(--radius);
     overflow: hidden;
     background: var(--surface);
+  }
+
+  /* Panoramas: span every column so they aren't cropped to 4:3 */
+  .tile-wide {
+    grid-column: 1 / -1;
+    aspect-ratio: 1600 / 657;
   }
 
   .tile img {
