@@ -5,6 +5,9 @@ interface Props {
   image: string;
   ctaUrl?: string;
   ctaText?: string;
+  /** Optional second button, rendered alongside the first. */
+  cta2Url?: string;
+  cta2Text?: string;
 }
 
 const {
@@ -13,6 +16,8 @@ const {
   image,
   ctaUrl = '/contact',
   ctaText = 'Get in touch →',
+  cta2Url,
+  cta2Text,
 } = Astro.props;
 ---
 
@@ -22,7 +27,12 @@ const {
   <div class="wrap">
     <h1>{heading}</h1>
     <p>{subtext}</p>
-    <a href={ctaUrl} class="btn" style="margin-top:28px">{ctaText}</a>
+    <div class="cta-row">
+      <a href={ctaUrl} class="btn">{ctaText}</a>
+      {cta2Url && cta2Text && (
+        <a href={cta2Url} class="btn btn-ghost">{cta2Text}</a>
+      )}
+    </div>
   </div>
 </section>
 
@@ -70,6 +80,27 @@ const {
     font-size: 18px;
     opacity: 0.9;
     line-height: 1.55;
+  }
+
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  /* Secondary button: outlined, so the primary still leads */
+  .btn-ghost {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.75);
+    color: #fff;
+    padding: 10px 22px;
+  }
+
+  .btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: #fff;
+    filter: none;
   }
 
   @media (max-width: 640px) {
