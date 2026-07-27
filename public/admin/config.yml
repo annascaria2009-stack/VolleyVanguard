@@ -41,6 +41,20 @@ collections:
           - { name: heading, label: "Heading", widget: string }
           - { name: image, label: "Hero Image", widget: image }
           - { name: body, label: "Body (paragraphs separated by a blank line)", widget: text }
+          - name: fundraiser
+            label: "Fundraiser"
+            widget: object
+            required: false
+            fields:
+              - { name: raised, label: "Amount raised (USD)", widget: number, value_type: float, hint: "Just the number, e.g. 798.19 — cents are shown only if you include them" }
+              - { name: goal, label: "Goal (USD)", widget: number, value_type: float }
+              - { name: deadline, label: "Deadline", widget: string, hint: "Written out, e.g. July 27, 2026" }
+              - { name: venmoUrl, label: "Venmo link", widget: string, required: false }
+              - { name: paypalUrl, label: "PayPal link", widget: string, required: false }
+              - { name: orgName, label: "Charity name", widget: string }
+              - { name: orgUrl, label: "Charity website", widget: string }
+              - { name: orgLogo, label: "Charity logo", widget: image }
+              - { name: orgMission, label: "Charity mission statement", widget: text }
       - name: schedule
         label: "Schedule"
         file: "src/data/schedule.json"

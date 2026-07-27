@@ -3,22 +3,22 @@ interface Props {
   heading: string;
   subtext: string;
   image: string;
-  ctaUrl?: string;
-  ctaText?: string;
-  /** Optional second button, rendered alongside the first. */
-  cta2Url?: string;
-  cta2Text?: string;
+  /** Buttons shown under the subtext. `variant` sets the visual weight. */
+  ctas?: { url: string; text: string; variant?: 'primary' | 'light' | 'ghost' }[];
 }
 
 const {
   heading,
   subtext,
   image,
-  ctaUrl = '/contact',
-  ctaText = 'Get in touch →',
-  cta2Url,
-  cta2Text,
+  ctas = [{ url: '/contact', text: 'Get in touch →' }],
 } = Astro.props;
+
+const variantClass = {
+  primary: '',
+  light: 'btn-light',
+  ghost: 'btn-ghost',
+};
 ---
 
 <section class="hero">
@@ -28,10 +28,9 @@ const {
     <h1>{heading}</h1>
     <p>{subtext}</p>
     <div class="cta-row">
-      <a href={ctaUrl} class="btn">{ctaText}</a>
-      {cta2Url && cta2Text && (
-        <a href={cta2Url} class="btn btn-ghost">{cta2Text}</a>
-      )}
+      {ctas.map((c) => (
+        <a href={c.url} class:list={['btn', variantClass[c.variant ?? 'primary']]}>{c.text}</a>
+      ))}
     </div>
   </div>
 </section>
@@ -89,7 +88,18 @@ const {
     margin-top: 28px;
   }
 
-  /* Secondary button: outlined, so the primary still leads */
+  /* Solid white: sits between the coral primary and the outlined ghost */
+  .btn-light {
+    background: #fff;
+    color: var(--navy);
+  }
+
+  .btn-light:hover {
+    background: #eef2f8;
+    filter: none;
+  }
+
+  /* Outlined, lowest emphasis */
   .btn-ghost {
     background: transparent;
     border: 2px solid rgba(255, 255, 255, 0.75);

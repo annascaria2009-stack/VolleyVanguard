@@ -1,5 +1,16 @@
 {
   "heading": "About VolleyVanguard",
   "image": "/images/uploads/about-team.jpg",
-  "body": "VolleyVanguard started as just a group of high school friends who shared a massive love for volleyball and a desire to give back to our community. What began last summer as a passion project to coach younger kids has quickly grown into something much bigger.\n\nThis year, we wanted our love for the game to make an impact off the court, too. That's why we turned VolleyVanguard into a community fundraiser, ensuring that 100% of our camp proceeds will be donated directly to a non-profit organization to help youth gain access to sports. We are currently finalizing the details of our official partnership and can't wait to share the organization with everyone soon!\n\nOur philosophy is simple: train hard, lift each other up, and have a blast doing it. We're here to coach the fundamentals with high energy, mentor the next generation of players, and share the absolute joy that brought us to the game in the first place.\n\nWhether your child is picking up a volleyball for the first time or getting ready for school tryouts, we can't wait to meet them on the court!"
+  "body": "VolleyVanguard started as just a group of high school friends who shared a massive love for volleyball and a desire to give back to our community. What began last summer as a passion project to coach younger kids has quickly grown into something much bigger.\n\nThis year, we wanted our love for the game to make an impact off the court, too. That's why we turned VolleyVanguard into a community fundraiser, and we're proud to share that 100% of our camp proceeds are being donated to Sunday Friends, a San Jose non-profit working to break the cycle of poverty for Bay Area families.\n\nOur philosophy is simple: train hard, lift each other up, and have a blast doing it. We're here to coach the fundamentals with high energy, mentor the next generation of players, and share the absolute joy that brought us to the game in the first place.\n\nWhether your child is picking up a volleyball for the first time or getting ready for school tryouts, we can't wait to meet them on the court!",
+  "fundraiser": {
+    "raised": 798.19,
+    "goal": 1000,
+    "deadline": "July 27, 2026",
+    "venmoUrl": "https://www.venmo.com/u/volleyvanguard",
+    "paypalUrl": "https://paypal.me/volleyvanguard",
+    "orgName": "Sunday Friends",
+    "orgUrl": "https://www.sundayfriends.org",
+    "orgLogo": "/images/uploads/sunday-friends-logo.png",
+    "orgMission": "Sunday Friends helps families break the intergenerational cycle of poverty and achieve health equity by activating their internal power and providing resources through a supportive community across multiple generations."
+  }
 }

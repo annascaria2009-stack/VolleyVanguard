@@ -4,6 +4,19 @@ import SectionLabel from '../components/SectionLabel.astro';
 import about from '../data/about.json';
 
 const paragraphs = about.body.split(/\n\n+/);
+
+const fr = about.fundraiser;
+const pct = fr ? Math.min(100, Math.round((fr.raised / fr.goal) * 100)) : 0;
+// Show cents only when there are any, so "$1,000" stays clean but "$798.19" keeps its cents.
+const money = (n: number) => {
+  const digits = Number.isInteger(n) ? 0 : 2;
+  return n.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: digits,
+    maximumFractionDigits: digits,
+  });
+};
 ---
 <BaseLayout title="About" description="The story behind VolleyVanguard.">
   <section class="section">
@@ -14,6 +27,70 @@ const paragraphs = about.body.split(/\n\n+/);
       <div class="prose">
         {paragraphs.map((p) => <p>{p}</p>)}
       </div>
+
+      {fr && (
+        <div class="fundraiser" id="fundraiser">
+          <SectionLabel text="Our Fundraiser" />
+          <h2 class="fr-title">Playing for a cause</h2>
+
+          <div class="fr-progress">
+            <div class="fr-amounts">
+              <span class="fr-raised">{money(fr.raised)}</span>
+              <span class="fr-goal">raised of our {money(fr.goal)} goal</span>
+            </div>
+            <div
+              class="fr-bar"
+              role="progressbar"
+              aria-valuenow={fr.raised}
+              aria-valuemin="0"
+              aria-valuemax={fr.goal}
+              aria-label={`${money(fr.raised)} raised of a ${money(fr.goal)} goal`}
+            >
+              <span class="fr-fill" style={`width:${pct}%`}></span>
+            </div>
+            <p class="fr-deadline">
+              We're hoping to reach {money(fr.goal)} by the end of {fr.deadline} — every
+              bit goes straight to {fr.orgName}.
+            </p>
+
+            {(fr.venmoUrl || fr.paypalUrl) && (
+              <div class="fr-donate">
+                <p class="fr-donate-label">Chip in</p>
+                <div class="fr-donate-row">
+                  {fr.venmoUrl && (
+                    <a class="btn pay pay-venmo" href={fr.venmoUrl} target="_blank" rel="noopener noreferrer">
+                      Donate with Venmo →
+                    </a>
+                  )}
+                  {fr.paypalUrl && (
+                    <a class="btn pay pay-paypal" href={fr.paypalUrl} target="_blank" rel="noopener noreferrer">
+                      Donate with PayPal →
+                    </a>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div class="fr-org">
+            <a href={fr.orgUrl} target="_blank" rel="noopener noreferrer" class="fr-logo-link">
+              <img
+                class="fr-logo"
+                src={fr.orgLogo}
+                alt={`${fr.orgName} logo`}
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+            <div class="fr-org-text">
+              <p class="fr-mission">“{fr.orgMission}”</p>
+              <a href={fr.orgUrl} target="_blank" rel="noopener noreferrer" class="fr-link">
+                Learn more about {fr.orgName} →
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   </section>
 </BaseLayout>
@@ -37,4 +114,115 @@ const paragraphs = about.body.split(/\n\n+/);
     line-height:1.75;
   }
   .prose p + p { margin-top:18px; }
+
+  /* Fundraiser */
+  .fundraiser {
+    /* Clears the sticky header when linked to via #fundraiser */
+    scroll-margin-top:90px;
+    margin-top:48px;
+    padding:32px;
+    background:#fff;
+    border-radius:var(--radius);
+    box-shadow:0 8px 24px rgba(11,31,58,0.07);
+    max-width:720px;
+  }
+  .fr-title {
+    font-size:26px;
+    color:var(--navy);
+    margin-bottom:20px;
+  }
+
+  .fr-amounts {
+    display:flex;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:10px;
+  }
+  .fr-raised {
+    font-family:'Archivo Black', Inter, sans-serif;
+    font-size:38px;
+    color:var(--coral);
+    line-height:1;
+  }
+  .fr-goal {
+    font-size:15px;
+    color:var(--muted);
+    font-weight:600;
+  }
+
+  .fr-bar {
+    height:12px;
+    background:var(--surface);
+    border-radius:999px;
+    overflow:hidden;
+  }
+  .fr-fill {
+    display:block;
+    height:100%;
+    background:var(--coral);
+    border-radius:999px;
+  }
+  .fr-deadline {
+    margin-top:12px;
+    font-size:15px;
+    color:var(--muted);
+    line-height:1.6;
+  }
+
+  /* Donate buttons */
+  .fr-donate { margin-top:22px; }
+  .fr-donate-label {
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+    color:var(--navy);
+    margin-bottom:10px;
+  }
+  .fr-donate-row {
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .pay {
+    font-size:15px;
+    padding:11px 20px;
+    color:#fff;
+  }
+  .pay-venmo { background:#008CFF; }
+  .pay-paypal { background:#003087; }
+  .pay:focus-visible { outline:2px solid var(--navy); outline-offset:2px; }
+
+  .fr-org {
+    display:grid;
+    grid-template-columns:180px 1fr;
+    gap:24px;
+    align-items:center;
+    margin-top:28px;
+    padding-top:24px;
+    border-top:1px solid #eef2f8;
+  }
+  .fr-logo-link { display:block; }
+  .fr-logo { width:100%; height:auto; }
+  .fr-mission {
+    font-size:15px;
+    color:var(--ink);
+    line-height:1.7;
+    font-style:italic;
+  }
+  .fr-link {
+    display:inline-block;
+    margin-top:10px;
+    font-size:14px;
+    font-weight:700;
+    color:var(--navy);
+  }
+  .fr-link:hover { text-decoration:underline; }
+
+  @media (max-width:640px) {
+    .fundraiser { padding:24px 20px; }
+    .fr-org { grid-template-columns:1fr; gap:18px; }
+    .fr-logo { max-width:220px; }
+  }
 </style>

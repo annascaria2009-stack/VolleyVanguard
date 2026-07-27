@@ -26,10 +26,11 @@ const galleryItems = (await getCollection('gallery'))
     heading={home.heroHeading}
     subtext={home.heroSubtext}
     image={home.heroImage}
-    ctaUrl="/feedback"
-    ctaText="Share your feedback →"
-    cta2Url="/contact"
-    cta2Text="Get in touch →"
+    ctas={[
+      { url: '/about#fundraiser', text: 'Donate now →', variant: 'primary' },
+      { url: '/feedback', text: 'Share your feedback →', variant: 'light' },
+      { url: '/contact', text: 'Get in touch →', variant: 'ghost' },
+    ]}
   />
 
   <section class="section">
