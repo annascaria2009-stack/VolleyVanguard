@@ -1,6 +1,6 @@
 ---
 image: "/images/uploads/camp2026-coaches.jpg"
-caption: "Coaches ready for the morning session"
+caption: "Coaches ready to go"
 category: "event"
 year: 2026
 season: "Summer"

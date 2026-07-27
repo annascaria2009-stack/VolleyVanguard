@@ -16,8 +16,9 @@ const renderedCoaches = await Promise.all(
   })
 );
 
+// Newest year first, so "Recent moments" follows the latest camp automatically.
 const galleryItems = (await getCollection('gallery'))
-  .sort((a, b) => a.data.order - b.data.order)
+  .sort((a, b) => b.data.year - a.data.year || a.data.order - b.data.order)
   .slice(0, 3)
   .map((e) => ({ image: e.data.image, caption: e.data.caption }));
 ---
